@@ -52,7 +52,7 @@ function isMobile() {
 }
 
 
-function drawKeypoints(keypoints) {
+function drawPredictions(keypoints) {
   if (!keypoints) return;
   keypoints.forEach((hand)=> {
     drawOneHand(hand['keypoints'], hand['handedness']);
@@ -133,7 +133,7 @@ const landmarksRealTime = async (video) => {
 
     if (predictions.length > 0) {
       // console.log(result);
-      drawKeypoints(predictions);
+      drawPredictions(predictions);
     }
     // stats.end();
     requestAnimationFrame(frameLandmarks);
@@ -153,6 +153,7 @@ if ('xr' in navigator) {
 }
 
 async function main() {
+  // load model
   await tf.setBackend(state.backend);
   // model = await handpose.load();
   const model = handPoseDetection.SupportedModels.MediaPipeHands;
@@ -161,8 +162,9 @@ async function main() {
     modelType: 'full',
   };
   detector = await handPoseDetection.createDetector(model, detectorConfig);
-  let video;
 
+  // setup camera
+  let video;
   try {
     video = await setupCamera();
     let loaded = document.getElementById('loaded');
@@ -175,10 +177,10 @@ async function main() {
     info.style.display = 'block';
     throw e;
   }
-
   videoWidth = video.videoWidth;
   videoHeight = video.videoHeight;
 
+  // set up canvas
   canvas = document.getElementById('output');
   canvas.width = videoWidth;
   canvas.height = videoHeight;
@@ -191,6 +193,7 @@ async function main() {
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
 
+  // make predictions and draw to canvas
   landmarksRealTime(video);
 }
 

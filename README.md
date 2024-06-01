@@ -6,3 +6,8 @@
 ```npm install``` (only run first time)
 
 ```npm run watch```
+
+** How to deploy to github page **
+```npm run build``
+
+```npm run deploy```

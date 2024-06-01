@@ -167,10 +167,6 @@ async function main() {
   let video;
   try {
     video = await setupCamera();
-    let loaded = document.getElementById('loaded');
-    let loading = document.getElementById('loading');
-    loaded.style.display = 'block';
-    loading.style.display = 'none';
   } catch (e) {
     let info = document.getElementById('info');
     info.textContent = e.message;
@@ -192,6 +188,12 @@ async function main() {
 
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
+
+  // switch loading display to loaded
+  let loaded = document.getElementById('loaded');
+  let loading = document.getElementById('loading');
+  loaded.style.display = 'block';
+  loading.style.display = 'none';
 
   // make predictions and draw to canvas
   landmarksRealTime(video);

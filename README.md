@@ -19,7 +19,7 @@
 3. In the terminal, run `npm install` to install necessary npm packages (first-time setup only).
 
 #### Run the Project
-  Execute `npm run watch` in the terminal.
+  Execute `npm start` in the terminal.
  
   The project will open in your default web browser.
   Any code changes will automatically update the webpage.

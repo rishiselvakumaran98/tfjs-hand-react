@@ -13,35 +13,41 @@ limitations under the License.
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0, user-scalable=no" />
 <style>
-  #output {
-    position: fixed;
-    border: 0px;
-  }
+    #output {
+        position: fixed;
+        border: 0px;
+    }
 
-  #video {
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-    position: fixed;
-    z-index: -1;
-  }
+    #video {
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        position: fixed;
+        z-index: -1;
+    }
 
-  #loading {
-    color: blue;
-  }
+    #loading {
+        color: blue;
+    }
+
+    #cnt {
+        font-size: 40px;
+        color: red;
+    }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/stats.js@0.17.0/build/stats.min.js"></script>
 
 <body>
-  <div id="info" style="display: none;"></div>
-  <h1>A Hand Guesture Detector</h1>
+    <div id="info" style="display: none;"></div>
+    <h1>A Hand Guesture Detector</h1>
 
-  <h2 id="loaded" style="display: none;">
-    Make hand gesture and say what happens
-  </h2>
-  <video autoplay poster="hand.jpg" id="video"></video>
-  <canvas id="output"></canvas>
-  <div id="loading">
-    <h2>Wait for the ML Hand Detector to load...</h2>
-  </div>
-  <script src="./index.js"></script>
+    <h2 id="loaded" style="display: none;">
+        Make hand gesture and say what happens
+    </h2>
+    <video autoplay poster="hand.jpg" id="video"></video>
+    <canvas id="output"></canvas>
+    <div id="loading">
+        <h2>Wait for the ML Hand Detector to load...</h2>
+    </div>
+    <p id="cnt"></p>
+    <script src="./index.js"></script>
 </body>

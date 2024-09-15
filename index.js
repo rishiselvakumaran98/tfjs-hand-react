@@ -19,24 +19,17 @@
 import * as handPoseDetection from '@tensorflow-models/hand-pose-detection';
 import * as tf from '@tensorflow/tfjs-core';
 import '@tensorflow/tfjs-backend-webgl';
+import {drawPredictions} from './drawing';
 
-let detector,
-  videoWidth,
-  videoHeight,
-  ctx,
-  canvas,
-  fingerLookupIndices = {
-    thumb: [0, 1, 2, 3, 4],
-    indexFinger: [0, 5, 6, 7, 8],
-    middleFinger: [0, 9, 10, 11, 12],
-    ringFinger: [0, 13, 14, 15, 16],
-    pinky: [0, 17, 18, 19, 20],
-  }; // for rendering each finger as a polyline
+let detector;
+let videoWidth;
+let videoHeight;
+let ctx;
+let canvas; // for rendering each finger as a polyline
 
 const VIDEO_WIDTH = 640;
 const VIDEO_HEIGHT = 500;
 const mobile = isMobile();
-
 const state = {
   backend: 'webgl',
 };
@@ -49,55 +42,6 @@ function isMobile() {
   const isAndroid = /Android/i.test(navigator.userAgent);
   const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
   return isAndroid || isiOS;
-}
-
-
-function drawPredictions(keypoints) {
-  if (!keypoints) return;
-  keypoints.forEach((hand)=> {
-    drawOneHand(hand['keypoints'], hand['handedness']);
-  });
-}
-
-
-function drawOneHand(keypoints, handedness) {
-  ctx.fillStyle = handedness === 'Left' ? 'Red' : 'Blue';
-  ctx.strokeStyle = handedness === 'Left' ? 'Red' : 'Blue';
-
-
-  // draw keypoints
-  for (let i = 0; i < keypoints.length; i++) {
-    const {x, y} = keypoints[i];
-    ctx.beginPath();
-    // if (i === THUMB_TIP || i === INDEX_FINGER_TIP)
-    // ctx.arc(x, y, 10, 0, 2 * Math.PI);
-    // else
-    ctx.arc(x-1, y-1, 3, 0, 2 * Math.PI); // draw a circle
-    ctx.fill();
-  }
-
-  // draw fingers
-  const fingers = Object.keys(fingerLookupIndices);
-  for (let i = 0; i < fingers.length; i++) {
-    const finger = fingers[i];
-    const points = fingerLookupIndices[finger].map((idx) => keypoints[idx]);
-    drawPath(points, false);
-  }
-}
-
-
-function drawPath(points, closePath) {
-  const region = new Path2D();
-  region.moveTo(points[0]['x'], points[0]['y']);
-  for (let i = 1; i < points.length; i++) {
-    const point = points[i];
-    region.lineTo(point['x'], point['y']);
-  }
-
-  if (closePath) {
-    region.closePath();
-  }
-  ctx.stroke(region);
 }
 
 async function setupCamera() {
@@ -133,7 +77,7 @@ const landmarksRealTime = async (video) => {
 
     if (predictions.length > 0) {
       // console.log(result);
-      drawPredictions(predictions);
+      drawPredictions(predictions, ctx);
     }
     // stats.end();
     requestAnimationFrame(frameLandmarks);
@@ -155,7 +99,6 @@ if ('xr' in navigator) {
 async function main() {
   // load model
   await tf.setBackend(state.backend);
-  // model = await handpose.load();
   const model = handPoseDetection.SupportedModels.MediaPipeHands;
   const detectorConfig = {
     runtime: 'tfjs',

@@ -1,7 +1,7 @@
 # tensorflow.js for handpose_tracking
 ## A Demo used in Qianwen's visualization with AI Course: 
 
-[online demo](https://umn-visual-intelligence-lab.github.io/tfjs-hand/)
+[online demo](https://visual-intelligence-umn.github.io/tfjs-hand/)
 
 <img width="300" alt="image" src="https://github.com/wangqianwen0418/tfjs-hand/assets/19774198/6c54f853-1793-4d61-bd2f-9da965aafdd2">
 

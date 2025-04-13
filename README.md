@@ -4,6 +4,7 @@
 
 ### Draw feature
 [Online demo]()
+
 <img width="300" alt="image" src="https://github.com/rishiselvakumaran98/tfjs-hand-react/blob/master/assets/Draw_Example.png">
 
 - Pinch the thumb and index finger together in one of the hands (left or right) and this should help you to draw on the video stream canvas

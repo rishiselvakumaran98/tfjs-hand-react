@@ -1,4 +1,18 @@
 # tensorflow.js for handpose_tracking
+
+## Hand Drawing feature
+
+### Draw feature
+[Online demo]()
+<img width="300" alt="image" src="https://github.com/rishiselvakumaran98/tfjs-hand-react/blob/master/assets/Draw_Example.png">
+
+- Pinch the thumb and index finger together in one of the hands (left or right) and this should help you to draw on the video stream canvas
+
+### Erase feature
+<img width="300" alt="image" src="https://github.com/rishiselvakumaran98/tfjs-hand-react/blob/master/assets/Erase_Example.png">
+
+- Spread the palm of your hand showing the wrist (left or right) and this should help to erase the drawing in the video stream canvas
+
 ## A Demo used in Qianwen's visualization with AI Course: 
 
 [online demo](https://visual-intelligence-umn.github.io/tfjs-hand/)

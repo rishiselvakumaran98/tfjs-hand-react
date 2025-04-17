@@ -19,7 +19,8 @@ import React, { useEffect } from 'react';
 import * as handPoseDetection from '@tensorflow-models/hand-pose-detection';
 import * as tf from '@tensorflow/tfjs-core';
 import '@tensorflow/tfjs-backend-webgl';
-import { drawPredictions, gestureDrawing } from './drawing';
+import { drawPredictions } from './drawing';
+import { gestureDrawing } from './drawGesture';
 
 let detector;
 let videoWidth;

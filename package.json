@@ -1,47 +1,60 @@
 {
-  "name": "tfjs-hand-react",
-  "version": "0.1.0",
+  "name": "tf-handpose",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "license": "Apache-2.0",
   "private": true,
+  "engines": {
+    "node": ">=8.9.0"
+  },
   "dependencies": {
-    "@tensorflow-models/hand-pose-detection": "^2.0.1",
-    "@tensorflow/tfjs-backend-webgl": "^4.22.0",
-    "@tensorflow/tfjs-core": "^4.22.0",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "@mediapipe/hands": "^0.4.1675469240",
+    "@tensorflow-models/hand-pose-detection": "2.0.1",
+    "@tensorflow/tfjs-backend-webgl": "^4.10.0",
+    "@tensorflow/tfjs-converter": "^4.10.0",
+    "@tensorflow/tfjs-core": "^4.10.0"
   },
-  "homepage": "https://rishiselvakumaran98.github.io/tfjs-hand-react",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -r https://github.com/rishiselvakumaran98/tfjs-hand-react.git -d build"
+    "watch": "parcel index.html --no-hmr ",
+    "build": "parcel build index.html --public-url ./",
+    "lint": "eslint .",
+    "link-local": "yalc link @tensorflow-models/handpose",
+    "deploy": "gh-pages -d dist"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "browser": {
+    "crypto": false
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
-  }
+    "babel-core": "~6.26.3",
+    "babel-plugin-transform-runtime": "~6.23.0",
+    "babel-polyfill": "~6.26.0",
+    "babel-preset-env": "~1.7.0",
+    "clang-format": "~1.2.2",
+    "cross-env": "^5.2.0",
+    "dat.gui": "~0.7.2",
+    "eslint": "~4.19.1",
+    "eslint-config-google": "~0.9.1",
+    "gh-pages": "^6.1.0",
+    "parcel-bundler": "~1.12.4",
+    "yalc": "~1.0.0-pre.23"
+  },
+  "eslintConfig": {
+    "extends": "google",
+    "rules": {
+      "require-jsdoc": 0,
+      "valid-jsdoc": 0
+    },
+    "env": {
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+    }
+  },
+  "eslintIgnore": [
+    "dist/"
+  ],
+  "keywords": []
 }
